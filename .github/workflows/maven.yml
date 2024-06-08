@@ -1,0 +1,63 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/tp/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build with Maven
+        run: mvn clean install
+        working-directory: TZ2
+
+      - name: Run tests
+        run: |
+          mvn -q test | grep -E "\[ERROR\] Tests" | awk -F' ' '{print $1}' | awk -F'(' '{print $2}' | sed 's/)//g' > failed_tests.txt
+        working-directory: TZ2
+
+      - name: Send success message to Telegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: "Все тесты пройдены успешно!"
+
+      - name: Read failed tests from file
+        id: read_failed_tests
+        run: echo "::set-output name=failed_tests::$(cat failed_tests.txt)"
+
+      - name: Send failure message to Telegram with failed tests
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Неудачные тесты:
+            ${{ steps.read_failed_tests.outputs.failed_tests }}
