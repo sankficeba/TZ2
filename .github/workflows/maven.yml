@@ -27,18 +27,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/tp/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
       - name: Build with Maven
         run: mvn clean install
-        working-directory: TZ2
 
       - name: Run tests
         run: |
           mvn -q test | grep -E "\[ERROR\] Tests" | awk -F' ' '{print $1}' | awk -F'(' '{print $2}' | sed 's/)//g' > failed_tests.txt
-        working-directory: TZ2
 
       - name: Send success message to Telegram
         if: success()
