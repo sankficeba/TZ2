@@ -28,7 +28,7 @@ class NumbersOperationsTest {
         System.out.println("\n" + "==============================" + "\n");
         for (int i = 0; i < numberOfTests; i++) {
             String testName = testNames.get(i);
-            String testAnsName = testNames.get(i);
+            String testAnsName = testAnsNames.get(i);
             BigInteger expected = NumbersOperations.getNumbersFromFile(testAnsName).get(0);
 
             // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
