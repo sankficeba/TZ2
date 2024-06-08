@@ -33,7 +33,6 @@ public class Main {
     static void write() throws IOException {
         File myFile = new File("TZ2/src/main/resources/test13.txt");
         FileOutputStream outputStream = new FileOutputStream(myFile);
-
 //        System.out.println(Arrays.toString(BigInteger.TEN.toString().getBytes())**);
 
         BigInteger bigInteger = new BigInteger("199999999999999999");
