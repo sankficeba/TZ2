@@ -31,13 +31,9 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger expected = NumbersOperations.getNumbersFromFile(testAnsName).get(0);
 
-            // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
             BigInteger actual = assertTimeoutPreemptively(Duration.ofSeconds(2), () -> NumbersOperations.findMin(testName));
-            long endTime = System.currentTimeMillis();
 
             assertEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " findMin took " + (endTime - startTime) + " ns");
         }
     }
 
@@ -50,13 +46,9 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger expected = NumbersOperations.getNumbersFromFile(testAnsName).get(1);
 
-            // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
             BigInteger actual = assertTimeoutPreemptively(Duration.ofSeconds(2), () -> NumbersOperations.findMax(testName));
-            long endTime = System.currentTimeMillis();
 
             assertEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " findMax took " + (endTime - startTime) + " ns");
         }
     }
 
@@ -69,13 +61,9 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger expected = NumbersOperations.getNumbersFromFile(testAnsName).get(2);
 
-            // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
             BigInteger actual = assertTimeoutPreemptively(Duration.ofSeconds(2), () -> NumbersOperations.getSum(testName));
-            long endTime = System.currentTimeMillis();
 
             assertEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " getSum took " + (endTime - startTime) + " ns");
         }
     }
 
@@ -88,13 +76,9 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger expected = NumbersOperations.getNumbersFromFile(testAnsName).get(3);
 
-            // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
             BigInteger actual = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.getMult(testName));
-            long endTime = System.currentTimeMillis();
 
             assertEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1)  + " getMult took " + (endTime - startTime) + " ns");
         }
     }
 
@@ -108,17 +92,13 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger[] expected = NumbersOperations.getNumbersFromFile(testAnsName).toArray(new BigInteger[0]);
 
-            // Засекаем время выполнения и проверяем, что методы возвращают ожидаемые результаты
-            long startTime = System.currentTimeMillis();
             BigInteger[] actual = new BigInteger[4];
             actual[0] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.findMin(testName));
             actual[1] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.findMax(testName));
             actual[2] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.getSum(testName));
             actual[3] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.getMult(testName));
-            long endTime = System.currentTimeMillis();
 
             assertArrayEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1)  + " took " + (endTime - startTime) + " ms");
         }
     }
 
@@ -131,17 +111,13 @@ class NumbersOperationsTest {
             String testAnsName = testAnsNames.get(i);
             BigInteger[] expected = NumbersOperations.getNumbersFromFile(testAnsName).toArray(new BigInteger[0]);
 
-            // Засекаем время выполнения и проверяем, что методы возвращают ожидаемые результаты
-            long startTime = System.currentTimeMillis();
             BigInteger[] actual = new BigInteger[4];
             actual[0] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.findMin(testName));
             actual[1] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.findMax(testName));
             actual[2] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.getSum(testName));
             actual[3] = assertTimeoutPreemptively(Duration.ofSeconds(3), () -> NumbersOperations.getMult(testName));
-            long endTime = System.currentTimeMillis();
 
             assertArrayEquals(expected, actual);
-            System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1)  + " took " + (endTime - startTime) + " ms");
         }
     }
 
