@@ -26,9 +26,9 @@ public class BenchMark {
             String testAnsName = testAnsNames.get(i);
 
             // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
             NumbersOperations.findMin(testName);
-            long endTime = System.currentTimeMillis();
+            long endTime = System.nanoTime();
 
             System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " findMin took " + (endTime - startTime) + " ns");
         }
@@ -40,9 +40,9 @@ public class BenchMark {
             String testAnsName = testAnsNames.get(i);
 
             // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
             NumbersOperations.findMax(testName);
-            long endTime = System.currentTimeMillis();
+            long endTime = System.nanoTime();
 
             System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " findMax took " + (endTime - startTime) + " ns");
         }
@@ -54,9 +54,9 @@ public class BenchMark {
             String testAnsName = testAnsNames.get(i);
 
             // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
             NumbersOperations.getSum(testName);
-            long endTime = System.currentTimeMillis();
+            long endTime = System.nanoTime();
 
             System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1) + " getSum took " + (endTime - startTime) + " ns");
         }
@@ -68,9 +68,9 @@ public class BenchMark {
             String testAnsName = testAnsNames.get(i);
 
             // Засекаем время выполнения и проверяем, что метод возвращает ожидаемый результат
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
             NumbersOperations.findMin(testName);
-            long endTime = System.currentTimeMillis();
+            long endTime = System.nanoTime();
 
             System.out.println(testName.substring(0, testName.lastIndexOf('.')).substring(testName.lastIndexOf('/') + 1)  + " getMult took " + (endTime - startTime) + " ns");
         }
